@@ -1,0 +1,48 @@
+[color]
+	ui = auto
+[color "branch"]
+	upstream = cyan
+#[commit]
+#	gpgsign = true
+[credential]
+	helper = cache
+[fetch]
+	prune = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[init]
+	defaultBranch = master
+[interactive]
+	singleKey = true
+[log]
+	abbrevCommit = true
+[merge]
+	conflictStyle = diff3
+[pull]
+	rebase = merges
+[push]
+	autoSetupRemote = true
+[user]
+	email = 5990152+x-user@users.noreply.github.com
+	name = Pavel Lymarev
+
+[include]
+	path = ~/.gitconfig.local
+[includeIf "hasconfig:remote.*.url:git@bitbucket.org:**/*"]
+	path = ~/.gitconfig.bitbucket
+[includeIf "hasconfig:remote.*.url:https://bitbucket.org/**/*"]
+	path = ~/.gitconfig.bitbucket
+
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	st = status
+
+	adog = log --all --decorate --oneline --graph
+	oops = commit --amend --no-edit
+
+	alias = !git config --get-regexp '^alias\\.' | sed -e 's/^alias\\.//' -e 's/\\ /=/'
