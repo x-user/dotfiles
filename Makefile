@@ -11,19 +11,23 @@ packages: ## list all packages
 command-%:
 	$(if $(shell command -v "$*"),,$(error "ERROR: '$*' command not found"))
 
-.PHONY: command-stow install-%
-install-%: packages/%/ ## install configs package by name, ex: install-git
-	@stow -v -t "$$HOME" -d packages -R '$*'
-
-.PHONY: command-stow uninstall-%
-uninstall-%: packages/%/ ## uninstall configs package by name, ex: uninstall-git
-	@stow -v -t "$$HOME" -d packages -D '$*'
+.PHONY: update-submodules
+update-submodules: command-git ## update submodules
+	@git submodule update --init --recursive --remote
 
 .PHONY: install
 install: $(addprefix install-,$(PACKAGES)) ## install all config packages
 
 .PHONY: uninstall
 uninstall: $(addprefix uninstall-,$(PACKAGES)) ## uninstall all config packages
+
+.PHONY: install-%
+install-%: command-stow update-submodules packages/%/ ## install configs package by name, ex: install-git
+	@stow -v -t "$$HOME" -d packages -R '$*'
+
+.PHONY: uninstall-%
+uninstall-%: command-stow update-submodules packages/%/ ## uninstall configs package by name, ex: uninstall-git
+	@stow -v -t "$$HOME" -d packages -D '$*'
 
 .PHONY: help
 help: ## show this help
