@@ -1,0 +1,28 @@
+# ~/.ssh/config
+# ==============================================================================
+
+Host *
+  {{- if ne .chezmoi.os "windows" }}
+  # Accelerate connections by reusing existing connections to the same host.
+  ControlMaster auto
+  ControlPath ~/.ssh/controlmasters/%r@%h:%p
+  ControlPersist 5
+  {{- end }}
+
+  {{- if eq .chezmoi.os "darwin" }}
+  # Allow storing passphrases in the macOS keychain.
+  # See https://developer.apple.com/library/archive/technotes/tn2449/_index.html
+  AddKeysToAgent yes
+  UseKeychain yes
+  {{- end }}
+
+  # Keep the connection temporarily open by sending a data every few minutes.
+  ServerAliveCountMax 6
+  ServerAliveInterval 300
+
+  # Disable client-side roaming support for security reasons.
+  # See https://www.upguard.com/blog/fixing-the-new-openssh-roaming-bug
+  UseRoaming no
+
+# ==============================================================================
+# code: language=ssh_config vim: set ft=sshconfig:
