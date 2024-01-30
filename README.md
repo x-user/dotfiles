@@ -18,6 +18,12 @@ sh -c "$(curl -fsLS get.chezmoi.io)"
 chezmoi init github.com/x-user --apply
 ```
 
+`winget` (windows)
+```bat
+winget install twpayne.chezmoi
+chezmoi init github.com/x-user --apply
+```
+
 `powershell` (windows)
 
 ```powershell
