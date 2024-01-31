@@ -50,7 +50,7 @@ layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [user]
 email = {{ .email | quote }}
-name = Pavel Lymarev
+name = {{ .name | quote }}
 {{- if not (empty .gpgKey) }}
 signingkey = {{ .gpgKey | quote }}
 {{- end }}
