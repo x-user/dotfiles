@@ -12,6 +12,7 @@ gpgsign = true
 template = ~/.gitmessage.txt
 
 [core]
+editor = nvim
 excludesfile = ~/.gitignore_global
 
 [credential]
@@ -26,11 +27,24 @@ helper = wincred
 helper = oauth
 {{- end }}
 
+[diff]
+tool = nvimdiff
+
+[difftool]
+prompt = false
+
 [init]
 defaultBranch = master
 
 [merge]
-conflictStyle = diff3
+conflictStyle = zdiff3
+tool = nvimdiff
+
+[mergetool]
+prompt = false
+
+[mergetool "nvimdiff"]
+layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [url "https://github.com/"]
 insteadOf = "github:"
