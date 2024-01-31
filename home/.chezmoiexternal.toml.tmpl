@@ -2,18 +2,21 @@
 # ==============================================================================
 
 [".config/nvim"]
-  type = "git-repo"
-  url = "https://github.com/NvChad/NvChad"
-  refreshPeriod = "168h"
-  [".config/nvim".clone]
-    args = ["--depth", "1"]
+type = "git-repo"
+url = "https://github.com/NvChad/NvChad"
+refreshPeriod = "168h"
+
+[".config/nvim".clone]
+args = ["--depth", "1"]
+
 
 [".config/tmux/plugins/tpm"]
-  type = "git-repo"
-  url = "https://github.com/tmux-plugins/tpm.git"
-  refreshPeriod = "168h"
-  [".config/tmux/plugins/tpm".clone]
-    args = ["--depth", "1"]
+type = "git-repo"
+url = "https://github.com/tmux-plugins/tpm.git"
+refreshPeriod = "168h"
+
+[".config/tmux/plugins/tpm".clone]
+args = ["--depth", "1"]
 
 # ==============================================================================
 # code: language=toml vim: set ft=toml:
