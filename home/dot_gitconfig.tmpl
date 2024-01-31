@@ -46,6 +46,11 @@ prompt = false
 [mergetool "nvimdiff"]
 layout = "LOCAL,BASE,REMOTE / MERGED"
 
+[user]
+email = {{ .email | quote }}
+name = Pavel Lymarev
+signingkey = {{ .gpgKey | quote }}
+
 [url "https://github.com/"]
 insteadOf = "github:"
 insteadOf = "git@github.com:"
@@ -58,19 +63,9 @@ insteadOf = "git@bitbucket.org:"
 pushInsteadOf = "bitbucket:"
 pushInsteadOf = "git@bitbucket.org:"
 
-[user]
-email = 5990152+x-user@users.noreply.github.com
-name = Pavel Lymarev
-signingkey = 6F0A36AE2D57B06F
-
 [include]
 path = ~/.gitconfig_aliases
 path = ~/.gitconfig_local
-
-[includeIf "hasconfig:remote.*.url:git@bitbucket.org:**/*"]
-path = ~/.gitconfig_bitbucket
-[includeIf "hasconfig:remote.*.url:https://bitbucket.org/**/*"]
-path = ~/.gitconfig_bitbucket
 
 # ==============================================================================
 # code: language=properties vim: set ft=gitconfig:

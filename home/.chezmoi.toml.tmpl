@@ -4,7 +4,14 @@
 sourceDir = {{ .chezmoi.workingTree | quote }}
 
 [warnings]
-  configFileTemplateHasChanged = false
+configFileTemplateHasChanged = false
+
+{{- $email := promptStringOnce . "email" "Email address" }}
+{{- $gpgKey := promptStringOnce . "gpgKey" "GPG public key" }}
+
+[data]
+email = {{ $email | quote }}
+gpgKey = {{ $gpgKey | quote }}
 
 # ==============================================================================
 # code: language=toml vim: set ft=toml:
