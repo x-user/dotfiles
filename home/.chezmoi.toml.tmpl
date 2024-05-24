@@ -6,9 +6,9 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 [warnings]
 configFileTemplateHasChanged = false
 
-{{- $email := promptStringOnce . "email" "Email of author/commiter" }}
-{{- $name := promptStringOnce . "name" "Name of author/commiter" }}
-{{- $gpgKey := promptStringOnce . "gpgKey" "GPG key to sign commits" }}
+{{- $name := promptStringOnce . "name" "Name of author/commiter" "Pavel Lymarev"}}
+{{- $email := promptStringOnce . "email" "Email of author/commiter" "5990152+x-user@users.noreply.github.com"}}
+{{- $gpgKey := promptStringOnce . "gpgKey" "GPG key to sign commits" "CB14622741D86FDA"}}
 
 [data]
 email = {{ $email | quote }}
