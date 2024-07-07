@@ -8,7 +8,7 @@ configFileTemplateHasChanged = false
 
 {{- $name := promptStringOnce . "name" "Name of author/commiter" "Pavel Lymarev"}}
 {{- $email := promptStringOnce . "email" "Email of author/commiter" "5990152+x-user@users.noreply.github.com"}}
-{{- $gpgKey := promptStringOnce . "gpgKey" "GPG key to sign commits" "CB14622741D86FDA"}}
+{{- $gpgKey := promptStringOnce . "gpgKey" "GPG key to sign commits" "51702CCBE3200C00"}}
 
 [data]
 email = {{ $email | quote }}
