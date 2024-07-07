@@ -1,0 +1,15 @@
+#!/bin/bash
+if ! grep -q .bashrc.d ~/.bashrc; then
+  tee <<'EOF' -a ~/.bashrc >/dev/null
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+EOF
+fi
