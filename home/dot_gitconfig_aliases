@@ -2,15 +2,15 @@
 # ==============================================================================
 
 [alias]
-br = branch
-ci = commit
-co = checkout
-st = status
+  br = branch
+  ci = commit
+  co = checkout
+  st = status
 
-adog = log --all --decorate --oneline --graph
-oops = commit --amend --no-edit
+  adog = log --all --decorate --oneline --graph
+  oops = commit --amend --no-edit
 
-alias = !git config --get-regexp '^alias\\.' | sed -e 's/^alias\\.//' -e 's/\\ /=/'
+  alias = !git config --get-regexp '^alias\\.' | sed -e 's/^alias\\.//' -e 's/\\ /=/'
 
 # ==============================================================================
 # code: language=properties vim: set ft=gitconfig:
