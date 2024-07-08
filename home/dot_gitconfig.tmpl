@@ -18,14 +18,14 @@ editor = nvim
 excludesfile = ~/.gitignore_global
 
 [credential]
-{{- if eq .chezmoi.os "linux" }}
-helper = libsecret
-helper = oauth
-{{- else if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 helper = osxkeychain
 helper = oauth
 {{- else if eq .chezmoi.os "windows" }}
 helper = wincred
+helper = oauth
+{{- else if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora")) }}
+helper = libsecret
 helper = oauth
 {{- end }}
 
