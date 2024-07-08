@@ -1,8 +1,14 @@
 # .chezmoiignore
 # ==============================================================================
 
+{{- if eq .chezmoi.os "darwin" }}
+.bashrc.d/configure_ssh-agent
+{{- end }}
+
 {{- if eq .chezmoi.os "windows" }}
-.ssh/controlmasters
+.bashrc.d/
+.bashrc.d/**
+.ssh/controlmasters/
 .ssh/controlmasters/**
 {{- end  }}
 
