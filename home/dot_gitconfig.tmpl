@@ -2,77 +2,77 @@
 # ==============================================================================
 
 [color]
-ui = auto
+  ui = auto
 
 [color "branch"]
-upstream = cyan
+  upstream = cyan
 
 [commit]
 {{- if not (empty .gpgKey) }}
-gpgsign = true
+  gpgsign = true
 {{- end }}
-template = ~/.gitmessage.txt
+  template = ~/.gitmessage.txt
 
 [core]
-editor = nvim
-excludesfile = ~/.gitignore_global
+  editor = nvim
+  excludesfile = ~/.gitignore_global
 
 [credential]
-{{- if eq .chezmoi.os "darwin" }}
-helper = osxkeychain
-helper = oauth
-{{- else if eq .chezmoi.os "windows" }}
-helper = wincred
-helper = oauth
-{{- else if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora")) }}
-helper = libsecret
-helper = oauth
+{{- if (or (eq .chassisType "desktop") (eq .chassisType "laptop")) }}
+{{-   if eq .chezmoi.os "linux" }}
+  helper = libsecret
+{{-   else if eq .chezmoi.os "darwin" }}
+  helper = osxkeychain
+{{-   else if eq .chezmoi.os "windows" }}
+  helper = wincred
+{{-   end }}
+  helper = oauth
 {{- end }}
 
 [diff]
-tool = nvimdiff
+  tool = nvimdiff
 
 [difftool]
-prompt = false
+  prompt = false
 
 [init]
-defaultBranch = master
+  defaultBranch = master
 
 [merge]
-conflictStyle = zdiff3
-tool = nvimdiff
+  conflictStyle = zdiff3
+  tool = nvimdiff
 
 [mergetool]
-prompt = false
+  prompt = false
 
 [mergetool "nvimdiff"]
-layout = "LOCAL,BASE,REMOTE / MERGED"
+  layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [user]
-email = {{ .email | quote }}
-name = {{ .name | quote }}
+  email = {{ .email | quote }}
+  name = {{ .name | quote }}
 {{- if not (empty .gpgKey) }}
-signingkey = {{ .gpgKey | quote }}
+  signingkey = {{ .gpgKey | quote }}
 {{- end }}
 
 [url "https://github.com/"]
-insteadOf = "github:"
-insteadOf = "git@github.com:"
-pushInsteadOf = "github:"
-pushInsteadOf = "git@github.com:"
+  insteadOf = "github:"
+  insteadOf = "git@github.com:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git@github.com:"
 
 [url "https://bitbucket.org/"]
-insteadOf = "bitbucket:"
-insteadOf = "git@bitbucket.org:"
-pushInsteadOf = "bitbucket:"
-pushInsteadOf = "git@bitbucket.org:"
+  insteadOf = "bitbucket:"
+  insteadOf = "git@bitbucket.org:"
+  pushInsteadOf = "bitbucket:"
+  pushInsteadOf = "git@bitbucket.org:"
 
 [include]
-path = ~/.gitconfig_aliases
-path = ~/.gitconfig_local
+  path = ~/.gitconfig_aliases
+  path = ~/.gitconfig_local
 
 [includeif "gitdir/i:~/Documents/work/"]
-path = ~/.gitconfig_work
+  path = ~/.gitconfig_work
 
 # ==============================================================================
 # code: language=properties vim: set ft=gitconfig:
