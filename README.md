@@ -2,32 +2,11 @@
 
 My dotfiles managed by [chezmoi](https://www.chezmoi.io)
 
-## Installation
+## How to use
 
-`homebrew` (linux & macos)
+Install `chezmoi` any way you want, then run
 
-```bash
-brew install chezmoi
-chezmoi init github.com/x-user --apply
-```
-
-`curl` (unix)
-
-```bash
-sh -c "$(curl -fsLS get.chezmoi.io)"
-chezmoi init github.com/x-user --apply
-```
-
-`winget` (windows)
-```bat
-winget install twpayne.chezmoi
-chezmoi init github.com/x-user --apply
-```
-
-`powershell` (windows)
-
-```powershell
-(irm -useb https://get.chezmoi.io/ps1) | powershell -c -
+```sh
 chezmoi init github.com/x-user --apply
 ```
 
