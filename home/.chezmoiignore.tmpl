@@ -1,0 +1,10 @@
+# .chezmoiignore
+# ==============================================================================
+
+{{- if eq .chezmoi.os "windows" }}
+.ssh/controlmasters
+.ssh/controlmasters/**
+{{- end  }}
+
+# ==============================================================================
+# code: language=ignore vim: set ft=gitignore:
