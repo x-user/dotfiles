@@ -4,16 +4,31 @@
 sourceDir = {{ .chezmoi.workingTree | quote }}
 
 [warnings]
-configFileTemplateHasChanged = false
+  configFileTemplateHasChanged = false
 
-{{- $name := promptStringOnce . "name" "Name of author/commiter" "Pavel Lymarev"}}
-{{- $email := promptStringOnce . "email" "Email of author/commiter" "5990152+x-user@users.noreply.github.com"}}
-{{- $gpgKey := promptStringOnce . "gpgKey" "GPG key to sign commits" "51702CCBE3200C00"}}
+{{- $chassisType := "desktop" }}
+{{- if (eq .chezmoi.os "darwin") }}
+{{-   if contains "MacBook" (output "sysctl" "-n" "hw.model") }}
+{{-     $chassisType = "laptop" }}
+{{-   else }}
+{{-     $chassisType = "desktop" }}
+{{-   end }}
+{{- else if (eq .chezmoi.os "linux") }}
+{{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{- else if (eq .chezmoi.os "windows") }}
+{{-   $chassisType = (output "powershell.exe" "-noprofile" "-command" "if (Get-WmiObject -Class win32_battery -ComputerName localhost) { echo laptop } else { echo desktop }") }}
+{{- end -}}
+
+{{- $name   := promptStringOnce . "name"   "Name of author/commiter"  "Pavel Lymarev"}}
+{{- $email  := promptStringOnce . "email"  "Email of author/commiter" "5990152+x-user@users.noreply.github.com"}}
+{{- $gpgKey := promptStringOnce . "gpgKey" "GPG key to sign commits"  "51702CCBE3200C00"}}
 
 [data]
-email = {{ $email | quote }}
-name = {{ $name | quote }}
-gpgKey = {{ $gpgKey | quote }}
+  chassisType = {{ $chassisType | quote }}
+
+  email = {{ $email | quote }}
+  name = {{ $name | quote }}
+  gpgKey = {{ $gpgKey | quote }}
 
 # ==============================================================================
 # code: language=toml vim: set ft=toml:
