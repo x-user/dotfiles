@@ -1,16 +1,16 @@
 # .chezmoiignore
 # ==============================================================================
 
-{{- if eq .chezmoi.os "darwin" }}
-.bashrc.d/configure_ssh-agent
-{{- end }}
-
 {{- if eq .chezmoi.os "windows" }}
 .bashrc.d/
 .bashrc.d/**
 .ssh/controlmasters/
 .ssh/controlmasters/**
 {{- end  }}
+
+{{- if (and (ne .chassisType "desktop") (ne .chassisType "laptop")) }}
+.bashrc.d/configure_ssh-agent
+{{- end }}
 
 # ==============================================================================
 # code: language=ignore vim: set ft=gitignore:
