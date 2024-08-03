@@ -3,48 +3,44 @@
 
 root = true
 
-# Common settings
-# ---------------------------------------------------------------------------- #
+# Common
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 2
+indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
-# ---------------------------------------------------------------------------- #
 
-# Python
-# ---------------------------------------------------------------------------- #
-[*.{py,pyw,rpy}]
-indent_size = 4
-# ---------------------------------------------------------------------------- #
-
-# Go & GNU/Make
-# ---------------------------------------------------------------------------- #
-[{*.mk,Makefile}]
+# Git
+[{.gitconfig*,.git/config}]
 indent_style = tab
 
-[{*.go,go.mod,go.sum,go.work}]
-indent_style = tab
-# ---------------------------------------------------------------------------- #
-
-# Markdown
-# ---------------------------------------------------------------------------- #
-[*.{markdown,md}]
-indent_style = tab
-trim_trailing_whitespace = false
-# ---------------------------------------------------------------------------- #
-
-# Windows scripts
-# ---------------------------------------------------------------------------- #
+# CMD
 [*.{bat,cmd}]
 charset = unset
 end_of_line = crlf
 
+# Markdown
+[*.{markdown,md}]
+indent_style = tab
+trim_trailing_whitespace = false
+
+# PowerShell
 [*.{ps1,psd1,psm1,ps1xml}]
 end_of_line = crlf
-# ---------------------------------------------------------------------------- #
+
+# Go & GNU/Make
+[{*.go,go.mod,go.sum,go.work,*.mk,Makefile}]
+indent_style = tab
+
+# JSOM, TOML & YAML
+[*.{json,jsonc,toml,yaml,yml}]
+indent_size = 2
+
+# CSS, HTML, JS/TS & VUE
+[*.{cjs,css,cts,htm,html,js,jsx,less,mjs,mts,scss,ts,tsx,vue}]
+indent_size = 2
 
 # ============================================================================ #
 # code: language=editorconfig vim: set ft=editorconfig:
