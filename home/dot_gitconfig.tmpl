@@ -18,16 +18,14 @@
   excludesfile = ~/.gitignore_global
 
 [credential]
-{{- if (or (eq .chassisType "desktop") (eq .chassisType "laptop")) }}
-{{-   if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "linux" }}
   helper = libsecret
-{{-   else if eq .chezmoi.os "darwin" }}
+{{- else if eq .chezmoi.os "darwin" }}
   helper = osxkeychain
-{{-   else if eq .chezmoi.os "windows" }}
+{{- else if eq .chezmoi.os "windows" }}
   helper = wincred
-{{-   end }}
-  helper = oauth
 {{- end }}
+  helper = oauth
 
 [diff]
   tool = nvimdiff
@@ -48,6 +46,14 @@
 [mergetool "nvimdiff"]
   layout = "LOCAL,BASE,REMOTE / MERGED"
 
+[url "https://github.com/"]
+  insteadOf = "git@github.com:"
+  pushInsteadOf = "git@github.com:"
+
+[url "https://bitbucket.org/"]
+  insteadOf = "git@bitbucket.org:"
+  pushInsteadOf = "git@bitbucket.org:"
+
 [user]
   email = {{ .email | quote }}
   name = {{ .name | quote }}
@@ -55,24 +61,17 @@
   signingkey = {{ .gpgKey | quote }}
 {{- end }}
 
-[url "https://github.com/"]
-  insteadOf = "github:"
-  insteadOf = "git@github.com:"
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git@github.com:"
-
-[url "https://bitbucket.org/"]
-  insteadOf = "bitbucket:"
-  insteadOf = "git@bitbucket.org:"
-  pushInsteadOf = "bitbucket:"
-  pushInsteadOf = "git@bitbucket.org:"
+# ------------------------------------------------------------------------------
 
 [include]
   path = ~/.gitconfig_aliases
   path = ~/.gitconfig_local
 
-[includeif "gitdir/i:~/Documents/work/"]
-  path = ~/.gitconfig_work
+[includeif "gitdir/i:~/projects/oss/"]
+  path = ~/projects/oss/.gitconfig
+
+[includeif "gitdir/i:~/projects/work/"]
+  path = ~/projects/work/.gitconfig
 
 # ==============================================================================
 # code: language=properties vim: set ft=gitconfig:
