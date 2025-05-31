@@ -1,4 +1,4 @@
 #!/bin/bash
 if command -v bat >/dev/null; then
-  alias cat='bat -p'
+  alias cat='bat -pp'
 fi
