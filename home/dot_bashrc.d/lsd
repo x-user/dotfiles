@@ -1,0 +1,6 @@
+#!/bin/bash
+if command -v lsd >/dev/null; then
+  alias ls='lsd -g --group-dirs=first'
+  alias ll='lsd -g --group-dirs=first -alF'
+  alias tree='lsd -g --group-dirs=first --tree'
+fi
